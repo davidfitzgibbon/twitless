@@ -1,0 +1,123 @@
+/* COLORS */
+$background: #EFEEE3
+$green: #66C5C1
+$red: #EA241F
+$dark: #332D2C
+$light: #FFFFFF
+
+/* FONT SETTINGS */
+$fs: 18px 
+$lh: 1.4em
+
+@import 'includes'
+	
+@mixin sans
+	font-family: "Open Sans", sans-serif
+
+*
+	+border-box // This'll change the box model so everything is contained within it: http://paulirish.com/2012/box-sizing-border-box-ftw/
+	-webkit-tap-highlight-color: transparent // remove webkit tap highlights. Aint nobody got time for that
+input:focus
+	outline: none
+
+
+// SORT OUT VIEWPORT META ON IE10 http://m.netmagazine.com/features/five-steps-gettin-flexy-responsive-web-design
+@viewport
+	width: device-width
+@-ms-viewport
+	width: device-width
+@-o-viewport
+	width: device-width
+
+body, html
+	background-color: $background
+	color: $dark 
+	+sans
+	float: left
+	width: 100%
+
+#container
+	overflow: hidden
+	width: 600px
+	max-width: 100%
+	margin: 0 auto
+	font-size: $fs
+	line-height: $lh
+	padding: $lh $fs
+
+
+#app
+	img
+		margin: 2em auto
+		display: block
+
+h1
+	font-size: em(24px)
+	margin-bottom: $lh
+	text-align: center
+	color: $red
+	font-weight: bold
+
+.twit_perc
+	display: block
+	width: 100%
+	margin: 0 auto
+	height: 1em
+	text-align: center
+	line-height: 1em
+	font-size: em(40px)
+
+	img
+		display: inline
+		vertical-align: baseline
+
+	h2
+		font-weight: bold
+		color: $green
+		display: inline
+
+		span
+			font-size: .5em
+
+form
+	height: 2em
+	position: relative
+	margin: 2em 0 1em
+
+	input
+		width: 100%
+		border: 2px solid $green
+		height: 2em
+		display: block
+		font-size: 18px
+
+	input[type=text]
+		position: absolute
+		padding: 0 1em
+
+	input[type=submit]
+		background: $green
+		color: $light
+		position: absolute
+		width: 20%
+		right: 0
+
+.tweet
+	padding: 1em
+	background: $light
+	margin-bottom: 1em
+
+	&.error
+		background: $red
+		color: $light
+
+a 
+	+link-over($red)
+
+footer
+	overflow: hidden
+	width: 600px
+	max-width: 100%
+	margin: 0 auto
+	padding: 0 $fs $lh
+	text-align: center
