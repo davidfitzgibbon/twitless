@@ -7,7 +7,6 @@ $(function($) {
 
 		initialize: function () {
 			this.getTweets(twitless.twit);
-
 		},
 
 		renderTweets: function() {
@@ -15,6 +14,16 @@ $(function($) {
 				twitlessCount = 0;
 			_.map(twitless.tweets.models, function (item) {
 				if ( item.get('text').charAt(0) !== '@') {
+					var tweet_date = that.make_date(item.get('created_at'));
+					current_date = that.make_date(new Date());
+
+					var time_diff = that.daydiff(tweet_date, current_date);
+					item.set('time_diff', time_diff);
+
+					var linkifiedString = linkifyString(item.get('text'));
+					
+					item.set('text', linkifiedString);
+
 					twitlessCount++;
 					that.render(item);
 				}
@@ -24,6 +33,16 @@ $(function($) {
 			$('#loading').hide();
 			$('.twit_perc').remove();
 			$('h1').after('<div class="twit_perc"><img src="img/kicks.gif" /><h2>' + twitlessCount + '<span> twits kicked out</span></h2></div>');
+		},
+		make_date: function (date) {
+			date = parseTwitterDate(date);
+			date = date.split(" ");
+			date = date[0];
+			date = date.split("/");
+			return new Date(date[2], date[0]-1, date[1]);
+		},
+		daydiff: function (first, second) {
+			return (second-first)/(1000*60*60*24);
 		},
 		render: function (model) {
 			var tweet = this.template(model.toJSON());

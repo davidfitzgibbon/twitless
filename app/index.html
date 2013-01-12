@@ -30,9 +30,10 @@
         </script>
 
         <script id="tweet" type="text/template">
-            <div class="tweet" data-retweeted="<%= retweeted %>">
-                    <%= text %>
-            </div>
+            <article class="tweet" data-retweeted="<%= retweeted %>">
+                    <p><%= text %></p>
+                    <span><%= time_diff %> days ago</span>
+            </article>
         </script>
 
     </div><!-- / container -->

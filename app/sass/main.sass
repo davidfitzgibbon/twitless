@@ -105,11 +105,16 @@ form
 .tweet
 	padding: 1em
 	background: $light
-	margin-bottom: 1em
+	margin-bottom: 1em 
+	overflow: auto
 
-	&.error
+	&.error 
 		background: $red
 		color: $light
+
+	span
+		float: right
+		color: darken($light, 15%)
 
 a 
 	+link-over($red)
